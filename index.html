@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <link rel="stylesheet" href="./assets/css/style-base.css">
+    <link rel="stylesheet" href="./assets/css/style-main.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.4.0-web/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <input type="checkbox" hidden class="signup-switch" id="login-signup">
+
+        <div class="login">
+            <h2 class="heading">Đăng nhập</h2>
+
+            <div class="typein-wrapper">
+                <input type="text" class="typein login-username" value="" required>
+                <label for="" class="label">Tên đăng nhập / Email</label>
+                <i class="fa-solid fa-envelope typein-icon"></i>
+            </div>
+
+            <div class="typein-wrapper">
+                <input type="password" class="typein login-password" value="" required>
+                <label for="" class="label">Mật khẩu</label>
+
+                <i class="fa-solid fa-key typein-icon"></i>
+            </div>
+
+            <div class="login-selection">
+                <div class="password-remember-wrapper">
+                    <input type="checkbox" id="check" class="remember-password">
+    
+                    <label for="check">Ghi nhớ mật khẩu</label>
+                </div>
+    
+                <a href="#" class="forget-password">Quên mật khẩu</a>
+            </div>
+
+            <div class="login-button-wrapper">
+                <button class="login-btn">Đăng nhập</button>
+            </div>
+
+            <div class="login-footer">
+                <p>Chưa có tài khoản? <label for="login-signup" class="login-footer-signup">Đăng ký</label></p>
+            </div>
+
+        </div>
+
+        <div class="signup">
+            <h2 class="heading">Đăng ký</h2>
+
+            <div class="typein-wrapper">
+                <input type="text" class="typein">
+                <label for="" class="label">Tên đăng nhập</label>
+            </div>
+
+            <div class="typein-wrapper">
+                <input type="email" class="typein">
+                <label for="" class="label">Email</label>
+            </div>
+
+            <div class="typein-wrapper">
+                <input type="password" class="typein">
+                <label for="" class="label">Mật khẩu</label>
+            </div>
+
+            <div class="typein-wrapper">
+                <input type="date" class="typein">
+                <label for="" class="label">Ngày sinh</label>
+            </div>
+
+            <div class="typein-wrapper">
+                <input type="date" hidden class="typein">
+                <label for="" class="label">Giới tính</label>
+                <select name="custom-select" id="gender">
+                    <option class="gender-option-disable" value="" disabled selected>Chọn giới tính</option>
+                    <option class="gender-option" value="1">Nam</option>
+                    <option class="gender-option" value="2">Nữ</option>
+                    <option class="gender-option" value="3">Tùy chỉnh</option>
+                </select>
+            </div>
+
+            <div class="login-button-wrapper">
+                <button class="login-btn">Đăng ký</button>
+            </div>
+
+            <div class="login-footer">
+                <p>Đã từng đăng ký? <label for="login-signup" class="login-footer-signup">Đăng nhập</label></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
