@@ -121,6 +121,7 @@
     color: var(--white-color);
     font-size: 1.4rem;
     font-weight: 600;
+    cursor: pointer;
 }
 #login-signup:checked ~ .login {
     transform: translateX(-300%);
