@@ -4,11 +4,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 .login {
-    margin: 40px 0;
+    margin: 100px 0;
     border: 2px solid var(--white-color);
     border-radius: 8px;
     min-width: 400px;
@@ -27,7 +27,7 @@
     margin: 18px 24px 48px;
     position: relative;
 }
-.label {
+.login-label {
     position: absolute;
     top: 11px;
     left: 2px;
@@ -37,6 +37,23 @@
     z-index: 1;
     opacity: .5;
     transition: top .5s, opacity .3s;
+}
+.signup-label {
+    position: absolute;
+    top: -21px;
+    left: 2px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white-color);
+    z-index: 1;
+    opacity: 1;
+    transition: top .5s, opacity .3s;
+}
+.signup .typein::placeholder {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--white-color);
+    opacity: 0.5;
 }
 .typein {
     position: relative;
@@ -49,8 +66,9 @@
     font-size: 1.6rem;
     color: var(--white-color);
     z-index: 2;
+    margin-bottom: 8px;
 }
-.typein-wrapper:focus-within > .label, .typein:valid + .label {
+.typein-wrapper:focus-within > .label.login-label, .typein:valid + .label.login-label {
     position: absolute;
     top: -21px;
     opacity: 1;
@@ -63,6 +81,21 @@
     position: absolute;
     top: 11px;
     right: 0;
+}
+.form-message {
+    display: block;
+    height: auto;
+    width: inherit;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.typein-wrapper.invalid {
+    color: var(--invalid);
+}
+.typein-wrapper.invalid .typein {
+    color: var(--invalid);
+    border-color: var(--invalid) !important;
+    background-image: linear-gradient(transparent, var(--blur-invalid)) !important;
 }
 .login-selection {
     display: flex;
@@ -142,7 +175,8 @@
     cursor: pointer;
 }
 .gender-option-disable {
-    color: #cfcfcf;
+    color: rgba(207, 207, 207, 0.6);
+    opacity: 0.6;
 }
 .gender-option {
     width: 100%;

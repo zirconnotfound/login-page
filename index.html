@@ -23,15 +23,17 @@
 
             <div class="typein-wrapper">
                 <input type="text" class="typein login-username" value="" required>
-                <label for="" class="label">Tên đăng nhập / Email</label>
+                <label for="" class="label login-label">Tên đăng nhập / Email</label>
                 <i class="fa-solid fa-envelope typein-icon"></i>
+                <span class="form-message"></span>
             </div>
 
             <div class="typein-wrapper">
                 <input type="password" class="typein login-password" value="" required>
-                <label for="" class="label">Mật khẩu</label>
+                <label for="" class="label login-label">Mật khẩu</label>
 
                 <i class="fa-solid fa-key typein-icon"></i>
+                <span class="form-message"></span>
             </div>
 
             <div class="login-selection">
@@ -54,48 +56,90 @@
 
         </div>
 
-        <div class="signup">
+        <form action="" method="POST" class="signup">
             <h2 class="heading">Đăng ký</h2>
-
-            <div class="typein-wrapper">
-                <input type="text" class="typein" placeholder="Nhập tên đăng nhập">
-                <label for="" class="label">Tên đăng nhập</label>
-            </div>
-
-            <div class="typein-wrapper">
-                <input type="email" class="typein" placeholder="Eg. example123@email.com">
-                <label for="" class="label">Email</label>
-            </div>
-
-            <div class="typein-wrapper">
-                <input type="password" class="typein" placeholder="Nhập mật khẩu">
-                <label for="" class="label">Mật khẩu</label>
-            </div>
-
-            <div class="typein-wrapper">
-                <input type="date" class="typein">
-                <label for="" class="label" placeholder="Eg. 01/01/2020">Ngày sinh</label>
-            </div>
-
-            <div class="typein-wrapper">
-                <input type="date" hidden class="typein">
-                <label for="" class="label">Giới tính</label>
-                <select name="custom-select" id="gender">
-                    <option class="gender-option-disable" value="" disabled selected>Chọn giới tính</option>
-                    <option class="gender-option" value="1">Nam</option>
-                    <option class="gender-option" value="2">Nữ</option>
-                    <option class="gender-option" value="3">Tùy chỉnh</option>
-                </select>
-            </div>
-
-            <div class="login-button-wrapper">
-                <button class="login-btn">Đăng ký</button>
-            </div>
-
-            <div class="login-footer">
-                <p>Đã từng đăng ký? <label for="login-signup" class="login-footer-signup">Đăng nhập</label></p>
-            </div>
-        </div>
+    
+                <div class="typein-wrapper">
+                    <input type="text" name="username" class="typein signup-username" placeholder="Nhập tên đăng nhập">
+                    <label for="" class="signup-label">Tên đăng nhập</label>
+                    <span class="form-message"></span>
+                </div>
+    
+                <div class="typein-wrapper">
+                    <input type="email" name="email" class="typein signup-email" placeholder="Eg. example123@email.com">
+                    <label for="" class="signup-label">Email</label>
+                    <span class="form-message"></span>
+                </div>
+    
+                <div class="typein-wrapper">
+                    <input type="password" name="password" class="typein signup-password" placeholder="Nhập mật khẩu">
+                    <label for="" class="signup-label">Mật khẩu</label>
+                    <span class="form-message"></span>
+                </div>
+    
+                <div class="typein-wrapper">
+                    <input type="password" name="password-confirm" class="typein signup-retype" placeholder="Nhập lại mật khẩu">
+                    <label for="" class="signup-label">Nhập lại mật khẩu</label>
+                    <span class="form-message"></span>
+                </div>
+    
+                <div class="typein-wrapper">
+                    <input type="date" name="date-of-birth" class="typein">
+                    <label for="" class="signup-label" placeholder="Eg. 01/01/2020">Ngày sinh</label>
+                    <span class="form-message"></span>
+                </div>
+    
+                <div class="typein-wrapper">
+                    <input type="date" hidden class="typein">
+                    <label for="" class="signup-label">Giới tính</label>
+                    <select name="gender-select" id="gender">
+                        <option class="gender-option-disable" value="Chọn giới tính" disabled selected>Chọn giới tính</option>
+                        <option class="gender-option" value="Nam">Nam</option>
+                        <option class="gender-option" value="Nữ">Nữ</option>
+                        <option class="gender-option" value="Tùy chỉnh">Tùy chỉnh</option>
+                    </select>
+                </div>
+    
+                <div class="login-button-wrapper">
+                    <button class="login-btn" type="submit">Đăng ký</button>
+                </div>
+    
+                <div class="login-footer">
+                    <p>Đã từng đăng ký? <label for="login-signup" class="login-footer-signup">Đăng nhập</label></p>
+                </div>
+        </form>
     </div>
+
+    <script src="./validator.js"></script>
+    <script>
+        Validator({
+            form: ".login",
+            groupSelector: ".typein-wrapper",
+            errorSelector: ".form-message",
+            rules: [
+                Validator.isRequired(".login-username"),
+                Validator.isRequired(".login-password"),
+            ]
+        });
+        Validator({
+            form: ".signup",
+            groupSelector: ".typein-wrapper",
+            errorSelector: ".form-message",
+            rules: [
+                Validator.isRequired(".signup-username"),
+                Validator.isRequired(".signup-email"),
+                Validator.isRequired(".signup-retype"),
+                Validator.isAlpha(".signup-username"),
+                Validator.isEmail(".signup-email"),
+                Validator.minimumLength(".signup-password", 8),
+                Validator.isConfirmed(".signup-retype", function() {
+                    return document.querySelector(".signup .signup-password").value;
+                }, "Mật khẩu nhập lại không chính xác!")
+            ],
+            onSubmit: function (data) {
+                console.log(data);
+            }
+        });
+    </script>
 </body>
 </html>
