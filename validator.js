@@ -15,7 +15,16 @@ function Validator(target) {
         var message;
         var rules = selectorRules[rule.selector];
         for (var i = 0; i < rules.length; i++) {
-            message = rules[i](inputElement.value);
+            switch (inputElement.type) {
+                case "radio":
+                case "checkbox":
+                    message = rules[i](
+                        formElement.querySelector(rule.selector + ":checked")
+                    );
+                    break;
+                default:
+                    message = rules[i](inputElement.value);
+            }
             if (message) break;
         }
         if (message) {
@@ -48,7 +57,18 @@ function Validator(target) {
                 if (typeof target.onSubmit === "function") {
                     var enableInputs = formElement.querySelectorAll("[name]");
                     var formValues = Array.from(enableInputs).reduce(function (values, input) {
-                        values[input.name] = input.value;
+                        switch(input.type) {
+                            case "radio":
+                            case "checkbox":
+                                if (input.matches(":checked")) {
+                                    values[input.name] = input.value;
+                                } else {
+                                    values[input.name] = input.value || "";
+                                }
+                                break;
+                            default:
+                                values[input.name] = input.value;
+                        }
                         return values;
                     }, {});
                     target.onSubmit(formValues);
@@ -68,8 +88,8 @@ function Validator(target) {
             }
 
             // Xử lí sự kiện blur khỏi input và nhập input
-            var inputElement = formElement.querySelector(rule.selector);
-            if (inputElement) {
+            var inputElements = formElement.querySelectorAll(rule.selector);
+            Array.from(inputElements).forEach(function (inputElement) {
                 inputElement.onblur = function() {
                     validate(inputElement, rule);
                 }
@@ -78,7 +98,7 @@ function Validator(target) {
                     errorElement.innerText = "";
                     getParent(inputElement, target.groupSelector).classList.remove("invalid");
                 }
-            }
+            });
         })
     }
 }

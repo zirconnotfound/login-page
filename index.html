@@ -84,20 +84,20 @@
                 </div>
     
                 <div class="typein-wrapper">
-                    <input type="date" name="date-of-birth" class="typein">
+                    <input type="date" name="date-of-birth" class="typein date-of-birth">
                     <label for="" class="signup-label" placeholder="Eg. 01/01/2020">Ngày sinh</label>
                     <span class="form-message"></span>
                 </div>
     
                 <div class="typein-wrapper">
-                    <input type="date" hidden class="typein">
                     <label for="" class="signup-label">Giới tính</label>
-                    <select name="gender-select" id="gender">
-                        <option class="gender-option-disable" value="Chọn giới tính" disabled selected>Chọn giới tính</option>
+                    <select name="gender-select" id="gender" class="typein">
+                        <option class="gender-option" value="">-- Chọn giới tính --</option>
                         <option class="gender-option" value="Nam">Nam</option>
                         <option class="gender-option" value="Nữ">Nữ</option>
                         <option class="gender-option" value="Tùy chỉnh">Tùy chỉnh</option>
                     </select>
+                    <span class="form-message"></span>
                 </div>
     
                 <div class="login-button-wrapper">
@@ -129,6 +129,8 @@
                 Validator.isRequired(".signup-username"),
                 Validator.isRequired(".signup-email"),
                 Validator.isRequired(".signup-retype"),
+                Validator.isRequired(".date-of-birth"),
+                Validator.isRequired("#gender"),
                 Validator.isAlpha(".signup-username"),
                 Validator.isEmail(".signup-email"),
                 Validator.minimumLength(".signup-password", 8),
